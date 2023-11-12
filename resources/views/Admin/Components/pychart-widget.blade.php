@@ -1,7 +1,7 @@
 
     <div class="x_panel tile fixed_height_320 overflow_hidden">
       <div class="x_title">
-        <h2>Device Usage</h2>
+        <h2>Service Request</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -21,14 +21,14 @@
         <table class="" style="width:100%">
           <tr>
             <th style="width:37%;">
-              <p>Top 5</p>
+              <p>{{-- Top 5 --}}</p>
             </th>
             <th>
               <div class="col-lg-7 col-md-7 col-sm-7 ">
-                <p class="">Device</p>
+                <p class="">Service Type</p>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-5 ">
-                <p class="">Progress</p>
+                <p class="">Request</p>
               </div>
             </th>
           </tr>
@@ -40,31 +40,31 @@
               <table class="tile_info">
                 <tr>
                   <td>
-                    <p><i class="fa fa-square blue"></i>IOS </p>
+                    <p><i class="fa fa-square blue"></i>Appointment</p>
                   </td>
                   <td>30%</td>
                 </tr>
                 <tr>
                   <td>
-                    <p><i class="fa fa-square green"></i>Android </p>
+                    <p><i class="fa fa-square green"></i>Certificate Services</p>
                   </td>
                   <td>10%</td>
                 </tr>
                 <tr>
                   <td>
-                    <p><i class="fa fa-square purple"></i>Blackberry </p>
+                    <p><i class="fa fa-square purple"></i>NIC Services</p>
                   </td>
                   <td>20%</td>
                 </tr>
                 <tr>
                   <td>
-                    <p><i class="fa fa-square aero"></i>Symbian </p>
+                    <p><i class="fa fa-square aero"></i>Passports Service</p>
                   </td>
                   <td>15%</td>
                 </tr>
                 <tr>
                   <td>
-                    <p><i class="fa fa-square red"></i>Others </p>
+                    <p><i class="fa fa-square red"></i>Vehicle Revenue Service</p>
                   </td>
                   <td>30%</td>
                 </tr>

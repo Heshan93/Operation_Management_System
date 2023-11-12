@@ -86,11 +86,10 @@
                                     <thead>
                                       <tr>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Job Roll</th>
+                                        <th>Districts</th>
+                                        <th>Divisions</th>
+                                        <th>Action</th>
                                       </tr>
                                     </thead>
               
@@ -110,8 +109,7 @@
                                           <td>Tiger Nixon</td>
                                           <td>System Architect</td>
                                           <td>Edinburgh</td>
-                                          <td>61</td>
-                                          <td>2011/04/25</td>
+                                          <td>Edinburgh</td>
                                           <td>          
                                             
                                             <!-- Split button -->

@@ -74,13 +74,17 @@ style="background-image: url('{{ asset('assets/images/hero_bg_1.jpg') }}')"
       </div>
     </div>
     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-      <form action="#">
+
+      <form action="contact_form" method="POST">
+        @csrf
+
         <div class="row">
           <div class="col-6 mb-3">
             <input
               type="text"
               class="form-control"
               placeholder="Your Name"
+              name="Name"
             />
           </div>
           <div class="col-6 mb-3">
@@ -88,6 +92,7 @@ style="background-image: url('{{ asset('assets/images/hero_bg_1.jpg') }}')"
               type="email"
               class="form-control"
               placeholder="Your Email"
+              name="email"
             />
           </div>
           <div class="col-12 mb-3">
@@ -95,11 +100,12 @@ style="background-image: url('{{ asset('assets/images/hero_bg_1.jpg') }}')"
               type="text"
               class="form-control"
               placeholder="Subject"
+              name="subject"
             />
           </div>
           <div class="col-12 mb-3">
             <textarea
-              name=""
+              name="message"
               id=""
               cols="30"
               rows="7"

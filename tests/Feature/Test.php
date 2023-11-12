@@ -12,10 +12,10 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_passport_service_form()
     {
-        $response = $this->get('/');
+        $response = $this->get('certificates');
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 }

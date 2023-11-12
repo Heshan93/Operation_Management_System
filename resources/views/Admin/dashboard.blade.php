@@ -65,13 +65,13 @@
 
                   <div class="row" style="display: contents ; ">
 
-                    <div class="col-md-4 col-sm-4 ">
+                    <div class="col-md-6 col-sm-6 ">
                     
                       @include('Admin.Components.pychart-widget') 
                     
                     </div>
 
-                    <div class="col-md-8 col-sm-8 ">
+                    <div class="col-md-6 col-sm-6 ">
 
                       @include('Admin.Components.weather-widget') 
                       

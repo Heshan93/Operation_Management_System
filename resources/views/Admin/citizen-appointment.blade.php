@@ -85,11 +85,11 @@
                                     <thead>
                                       <tr>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Service Type</th>
+                                        <th>Districts and Divisions</th>
+                                        <th>Request Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                       </tr>
                                     </thead>
               
@@ -107,10 +107,10 @@
 
                                         <tr>
                                           <td>Tiger Nixon</td>
-                                          <td>System Architect</td>
+                                          <td>NIC Request</td>
                                           <td>Edinburgh</td>
-                                          <td>61</td>
                                           <td>2011/04/25</td>
+                                          <td>Pending</td>
                                           <td>          
                                             
                                             <!-- Split button -->
@@ -141,13 +141,7 @@
               </div>
                   </div>
                 </div>
-
-
               </div>
-
-            
-           
-
           </div>
         </div>
       </div>

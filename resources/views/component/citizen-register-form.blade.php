@@ -4,7 +4,7 @@
     <form action="register_Citizen" method="POST" >
       @csrf
 
-      <h1>Sing Up</h1>
+      <h1>Sign Up</h1>
       <div>
         <input type="text" class="form-control" placeholder="First Name" name="fname" required="" />
       </div>

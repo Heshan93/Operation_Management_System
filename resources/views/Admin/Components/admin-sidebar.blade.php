@@ -50,6 +50,9 @@
                           <li>
                             <a href="citizen-appointment"><i class="fa fa-home"></i> Appointmet Manager </a>
                           </li>
+                          <li>
+                            <a href="citizen-appointments"><i class="fa fa-home"></i> Reports </a>
+                          </li>
                       </ul>
                   </div>
 

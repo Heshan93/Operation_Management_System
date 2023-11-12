@@ -652,8 +652,8 @@ class ServicesController extends Controller
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction in case of an exception
         
-            throw $e;
-           // return back()->with('fail', 'An error occurred while saving the document / service request: ' . $e->getMessage());
+            //throw $e;
+           return back()->with('fail', 'An error occurred while saving the document / service request: ' . $e->getMessage());
         }
 
 
