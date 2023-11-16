@@ -51,7 +51,7 @@
                         <div class="text-danger" style="text-align: left">
                           <span>@error('profile_image') {{ $message }} @enderror</span>
                         </div>
-                        @csrf <!-- Include the CSRF token -->
+                        @csrf 
                     </form>
                   
                     <script>

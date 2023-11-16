@@ -56,12 +56,14 @@
                           <h2>Users</h2>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                          <div class="input-group">
+
+                          @include('component.error-message') 
+                          {{-- <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for...">
                             <span class="input-group-btn">
                               <button class="btn btn-secondary" type="button">Go!</button>
                             </span>
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
 
@@ -78,7 +80,7 @@
                                   </div>
                                   <div class="col-md-6 col-sm-6 col-xs-6 text-right">
 
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-plus" style="padding-right: 6px"></i>   Create New Users</a>
+                                    <a href="add-user" class="btn btn-primary"><i class="fa fa-plus" style="padding-right: 6px"></i>   Create New Users</a>
 
                                   </div>
 
@@ -89,6 +91,7 @@
                                   <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%; padding-bottom: 30px">
                                     <thead>
                                       <tr>
+                                        <th>#</th>
                                         <th>Name</th>
                                         <th>Job Roll</th>
                                         <th>Districts</th>
@@ -107,13 +110,14 @@
                                     <tbody>
 
 
-                                      @for ($i=0; $i<15; $i++)
+                                      @foreach ($userData as $data)
 
                                         <tr>
-                                          <td>Tiger Nixon</td>
-                                          <td>System Architect</td>
-                                          <td>Edinburgh</td>
-                                          <td>Edinburgh</td>
+                                          <td>{{$data->id}}</td>
+                                          <td>{{$data->fname ." ".$data->lname}}</td>
+                                          <td>{{$data->job_roll}}</td>
+                                          <td>{{$data->district}}</td>
+                                          <td>{{$data->division}}</td>
                                           <td>          
                                             
                                             <!-- Split button -->
@@ -123,12 +127,10 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                               </button>
                                               <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">View</a>
-                                                <a class="dropdown-item" href="#">Edit</a>
-                                                <a class="dropdown-item" href="#">User Access Change</a>
+                                                <a class="dropdown-item" href="view_edit_user/{{$data->id}}">View / Edit</a>
                                                 <a  class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">Availability for Service</a>       <!-- link trigger modal -->                           
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#" style="background-color:#2a3f54; color: rgb(255, 0, 0) ">Delete</a> 
+                                                <a class="dropdown-item" href="delete_admin/{{$data->id}}" style="background-color:#2a3f54; color: rgb(255, 0, 0) ">Delete</a> 
                                               </div>
                                             </div>
                           
@@ -136,7 +138,7 @@
                                           </td>
                                         </tr>
                                       
-                                      @endfor
+                                      @endforeach
 
 
                                     </tbody>

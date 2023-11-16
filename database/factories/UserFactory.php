@@ -17,6 +17,7 @@ class UserFactory extends Factory
         return [
             'fname' => $this->faker->firstName(),
             'lname' => $this->faker->lastName(),
+            'nic' => $this->faker->unique()->regexify('[0-9]{9}[vV]'),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->unique()->phoneNumber(),
             'job_roll' => $this->faker->jobTitle(),
@@ -24,13 +25,13 @@ class UserFactory extends Factory
             'district' => $this->faker->city,
             'division' => $this->faker->city,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'is_admin' =>$this->faker -> boolean,
+           /*  'is_admin' =>$this->faker -> boolean,
             'is_view_user' =>$this->faker -> boolean,
             'is_edit_user' =>$this->faker -> boolean,
             'is_edit_user_access' =>$this->faker -> boolean,
             'is_view_citizen' =>$this->faker -> boolean,
             'is_edit_citizen' =>$this->faker -> boolean,
-            'is_manage_appointment' =>$this->faker -> boolean,
+            'is_manage_appointment' =>$this->faker -> boolean, */
         ];
     }
 

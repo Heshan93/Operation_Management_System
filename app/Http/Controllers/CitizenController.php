@@ -217,7 +217,7 @@ class CitizenController extends Controller
     }
 
 
-    // Logout citizen
+    // Logout 
     function flush()
     {
         // Clear the session data

@@ -57,10 +57,6 @@ Route::get('service',function(){
     return view('service');
 });
 
-Route::get('Download',function(){
-
-    return view('download');
-});
 
 
 
@@ -84,10 +80,7 @@ Route::get('user-access',function(){
     return view('Admin/user-access');
 });
 
-Route::get('add-user',function(){
 
-    return view('Admin/add-user');
-});
 
 
 
@@ -98,10 +91,6 @@ Route::get('view-user',function(){
 
 
 
-Route::get('edit-user',function(){
-
-    return view('Admin/edit-user');
-});
 
 Route::get('add-citizen-id',function(){
 
@@ -168,6 +157,8 @@ Route::get('appointment-reports',function(){
 
 /*==========================*/
 
+Route::view('Download','download');
+
 Route::get('pdf1', [DownloadController::class, 'downloadPdf1']);
 Route::get('pdf2', [DownloadController::class, 'downloadPdf2']);
 Route::get('pdf3', [DownloadController::class, 'downloadPdf3']);
@@ -223,11 +214,19 @@ Route::view('admin-dashboard','Admin/dashboard')->middleware('AdminAuth');
 Route::post('admin-auth',[Controller::class,'login']);
 Route::get('logout_admin',[Controller::class,'flush']);
 
-Route::view('citizen-manager','Admin/citizen-manager');
 
-Route::view('citizen-appointment','Admin/citizen-appointment');
 
-Route::view('user-manager','Admin/user-manager');
+Route::view('add-user','Admin/add-user')->middleware('AdminAuth');
+Route::post('stor_admin',[Controller::class,'storAdmin'])->middleware('AdminAuth');
+
+Route::view('citizen-manager','Admin/citizen-manager')->middleware('AdminAuth');
+
+Route::view('citizen-appointment','Admin/citizen-appointment')->middleware('AdminAuth');
+
+Route::get('user-manager',[Controller::class,'getUserManager'])->middleware('AdminAuth');
+Route::get('view_edit_user/{id}',[Controller::class,'getUserEdit'])->middleware('AdminAuth');
+Route::post('update_admin', [Controller::class, 'updateUser'])->middleware('AdminAuth');
+Route::get('delete_admin/{id}', [Controller::class, 'deleteUser'])->middleware('AdminAuth');
 
 
 

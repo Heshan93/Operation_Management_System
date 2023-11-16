@@ -54,13 +54,19 @@
 
 
 
+              {{--   @dd($user->id) --}}
                 <div class="col-md-12 col-sm-12 "  style="padding-top: 30px">
                   <div class="x_panel" >
-                    <form class="form-label-left input_mask">
+                    <form action="{{ url('update_admin') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+
                     <div class="x_title">
                       <div class="row">
                         <div class="col-md-6 col-sm-6">
                           <h2>Edit User</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          @include('component.error-message') 
                         </div>
 
                       </div>
@@ -75,80 +81,162 @@
                                 <div class="col-md-12 col-sm-12" style="padding-top: 30px">
                                   <div class="x_panel">
 
-                                    <div class="x_content">
-                                      <div class="row" style="padding: 15px">
-                                          <div class="col-md-6 col-sm-6 mb-2">
-                                              <!-- Container for user image and icon -->
-                                              <div class="border border-dark" style="position: relative; max-width: 250px; cursor: pointer; " id="user-image" data-toggle="modal" data-target="#updateImageModal">
-                                                  <!-- User Image -->
-                                                  <img src="{{asset('assets/images/person_3-min.jpg')}}" alt="user-image" style="width: 100%; ">
-                                                  <!-- Plus-square icon inside the container -->
-                                                  <i class="fa fa-plus-square" style="position: absolute; bottom: 0; right: 0; font-size: 24px; color:#2a3f54; background-color: rgb(255, 255, 255)"></i>
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6 col-sm-6 mb-2">
-                                          </div>
-                                      </div>
-                                  </div>
-                                  
-                                  
+                                      <div class="x_content">
+                                        <div class="row" style="padding: 15px">
+                                            <div class="col-md-6 col-sm-6 mb-2">
+                                                <!-- Container for user image and icon -->
+                                                <div class="border border-dark" style="position: relative; max-width: 250px; cursor: pointer;">
+                                                    <!-- User Image -->
+                                                    <label for="imageUpload" style="width: 100%;">
+                                                        <div id="user-image-container">
+                                                            <img id="user-image" src="{{asset('assets/images/person_3-min.jpg')}}" alt="user-image" style="width: 100%;">
+                                                        </div>
+                                                        <!-- Plus-square icon inside the container -->
+                                                        <i class="fa fa-plus-square" style="position: absolute; bottom: 0; right: 0; font-size: 24px; color:#2a3f54; background-color: rgb(255, 255, 255)"></i>
+                                                    </label>
+                                                    <div class="text-danger" style="text-align: left">
+                                                      <span style="color: red;">@error('profile_img') {{ $message }} @enderror</span>
+                                                    </div>
+                                                    <input type="file" name="profile_img" id="imageUpload" style="display: none" accept=".jpeg, .png, .jpg" onchange="updateUserImage(this)">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 mb-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <script>
+                                        function updateUserImage(input) {
+                                            var userImageContainer = document.getElementById('user-image-container');
+                                            var userImage = document.getElementById('user-image');
+                                    
+                                            var file = input.files[0];
+                                    
+                                            if (file) {
+                                                var reader = new FileReader();
+                                    
+                                                reader.onload = function (e) {
+                                                    userImage.src = e.target.result;
+                                                };
+                                    
+                                                reader.readAsDataURL(file);
+                                            }
+                                        }
+                                    </script>
+                                    
 
-                                       
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="first-name" placeholder="ID" disabled>
-                                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
+                                                              
+                                          <div class="x_content">
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="text" class="form-control has-feedback-left" id="id" name="id" value="{{$user->id}}" readonly>
+                                              <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('first_name') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
                                           
                     
-                                        <div class="x_content">
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="first-name" placeholder="First Name">
-                                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                          <div class="x_content">
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="text" class="form-control has-feedback-left" id="first-name" name="first_name" value="{{$user->fname}}" placeholder="First Name">
+                                              <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('first_name') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+                        
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="text" class="form-control has-feedback-left" name="last_name" id="last-name" value="{{$user->lname}}" placeholder="Last Name">
+                                              <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('last_name') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+                        
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="text" class="form-control has-feedback-left" name="nic" id="inputSuccess4" value="{{$user->nic}}" placeholder="NIC">
+                                              <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('nic') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+                        
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="email" class="form-control has-feedback-left" name="email" id="inputSuccess4"  value="{{$user->email}}" placeholder="Email">
+                                              <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('email') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+  
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="numeric" class="form-control has-feedback-left" name="phone" id="inputSuccess4" value="{{$user->phone}}" placeholder="Phone">
+                                              <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('phone') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+  
+                                            
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <select class="form-control has-feedback-left" name="job_roll">
+                                                <option disabled selected>Choose Job Roll</option>
+                                                <option @if($user->job_roll == 'Grama Niladari') selected @endif>Grama Niladari</option>
+                                                <option @if($user->job_roll == 'Samurdi Niladari') selected @endif>Samurdi Niladari</option>
+                                                <option @if($user->job_roll == 'Sanwardana Niladari') selected @endif>Sanwardana Niladari</option>
+                                            </select>                                            
+                                              <span class="fa fa-suitcase form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('job_roll') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+                        
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="text" class="form-control has-feedback-left" name="address" value="{{$user->address}}" id="inputSuccess4" placeholder="Address">
+                                              <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('address') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+  
+                                            <div class="col-md-6 col-sm-6 form-group has-feedback">
+                                              <select class="form-control has-feedback-left" name="district">
+                                                  <option disabled selected>Choose Duty District</option>
+                                                  <option @if($user->district == 'D1') selected @endif>D1</option>
+                                                  <option @if($user->district == 'D2') selected @endif>D2</option>
+                                                  <option @if($user->district == 'D3') selected @endif>D3</option>
+                                              </select>
+                                              <span class="fa fa-university form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                  <span style="color: red;">@error('district') {{ $message }} @enderror</span>
+                                              </div>
                                           </div>
-                      
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="last-name" placeholder="Last Name">
-                                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-                      
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="NIC">
-                                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-                      
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email">
-                                            <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Phone">
-                                            <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-
                                           
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Job Roll">
-                                            <span class="fa fa-suitcase form-control-feedback left" aria-hidden="true"></span>
+                                          <div class="col-md-6 col-sm-6 form-group has-feedback">
+                                              <select class="form-control has-feedback-left" name="division">
+                                                  <option disabled selected>Choose Duty Division</option>
+                                                  <option @if($user->division == 'D1') selected @endif>D1</option>
+                                                  <option @if($user->division == 'D2') selected @endif>D2</option>
+                                                  <option @if($user->division == 'D3') selected @endif>D3</option>
+                                              </select>
+                                              <span class="fa fa-sort form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                  <span style="color: red;">@error('division') {{ $message }} @enderror</span>
+                                              </div>
                                           </div>
-                      
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Address">
-                                            <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Duty District">
-                                            <span class="fa fa-university form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-
-                                          <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                            <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Duty Divitions">
-                                            <span class="fa fa-sort form-control-feedback left" aria-hidden="true"></span>
-                                          </div>
-
-
-                                       </div>
+                                          
+  
+                                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                              <input type="password" class="form-control has-feedback-left" name="password" id="inputSuccess4" placeholder="Password">
+                                              <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+                                              <div class="text-danger" style="text-align: left">
+                                                <span style="color: red;">@error('password') {{ $message }} @enderror</span>
+                                              </div>
+                                            </div>
+  
+  
+  
+                                         </div>
 
                      
                                     </div>
@@ -160,6 +248,113 @@
 
                             </div>
                           </div>
+
+
+
+                          <div class="col-md-12 col-sm-12" style="padding-top: 30px">
+                            <div class="x_panel">
+
+                              <div class="x_content">
+                                <br />        
+
+                                  <div class="row">
+                                    <h2>Access Management</h2>
+                                  </div>
+                                  <div class="row">
+
+
+
+                                                                    
+                                <div class="col-md-12 col-sm-12">
+                                  <div class="x_panel">
+
+                                      <div class="row " style="padding-top: 30px">
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" value="1" name="is_view_user"  @if($user->is_view_user) checked @endif  /> User Edit
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" value="1" name="is_edit_user"  @if($user->is_edit_user) checked @endif  /> User Edit
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" value="1" name="is_view_citizen"  @if($user->is_view_citizen) checked @endif /> View Citizens
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" value="1" name="is_edit_citizen" @if($user->is_edit_citizen) checked @endif  />Edid Citizen
+                                          </div>
+                                        </div>
+
+                                      </div>
+
+
+
+
+                                      <div class="row " style="padding-top: 30px">
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" value="1" name="is_manage_appointment"  @if($user->is_manage_appointment) checked @endif/> Manage Service
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" value="1" name="is_view_reports"  @if($user->is_view_reports) checked @endif/> View Reports
+                                            </label>
+                                          </div>
+                                        </div>
+                                        {{-- <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" name="" checked /> User Delete
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                          <div class="">
+                                            <label>
+                                              <input type="checkbox" class="js-switch" name="" checked />Access Management                                              
+                                            </label>
+                                          </div>
+                                        </div> --}}
+
+                                      </div>
+
+                                      
+
+
+
+                                  </div>
+                                </div>
+
+
+                                  </div>
+
+
+
+                              </div>
+
+                            </div>
+                          </div>
+
+
+
+
+
                       </div>
 
 
@@ -188,28 +383,7 @@
 
 
 
-            <!-- Update Image Modal -->
-        <div class="modal fade" id="updateImageModal" tabindex="-1" role="dialog" aria-labelledby="updateImageModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="updateImageModalLabel">Update User Image</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <!-- Image upload form or input field here -->
-                      <!-- You can use an <input type="file"> for image upload -->
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save Changes</button>
-                  </div>
-              </div>
-          </div>
-        </div>
-
+      
 
         @include('Admin.Components.admin-footer')
 
